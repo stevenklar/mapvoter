@@ -1,15 +1,9 @@
 var io = require('socket.io').listen('3000');
 
 io.on('connection', function(socket) {
-    socket.on('create', function (room) {
-        socket.join(room);
-        console.log('Join room ' + room);
-
-        socket.in(room).on('dismissed', function() {
-            console.log('Dismissed...');
-            console.log(this);
-
-            io.to(room).emit('dismissed', data);
-        });
+    socket.on('dismissed', function(data) {
+        console.log('dismissed', data);
+        console.log('dismissed'.concat(data.match));
+        io.sockets.emit('dismissed'.concat(data.match), { map: data.map });
     });
 });

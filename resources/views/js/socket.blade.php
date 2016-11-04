@@ -11,12 +11,6 @@
     var locked = {{ $locked }};
 
     var io = io('{{ env('SOCKET_URL') }}');
-    window.socket = io;
-    io.on('connection', function(socket) {
-        var matchId = 'match.' + matchID;
-        socket.join(matchId);
-        socket.emit('match', matchId);
-    });
     io.on('connect', function() {
         showOnline();
     });
@@ -24,10 +18,7 @@
         showOffline();
     });
 
-    io.on('dismissed', function() {
-        console.log('dismissed');
-        console.log(data);
-
+    io.on('dismissed{{ $match }}', function(data) {
         status('blue', 'Die Map "' + data.map + '" wurde rausgevotet!');
         dismissMap(data.map);
         switchVoter();

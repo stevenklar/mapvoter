@@ -69,8 +69,13 @@ Route::get('/dismiss/{matchId}/{teamId}/{map}', function($matchId, $teamId, $map
 //        'map' => $map,
 //    ]);
 
-    $data['map'] = $map;
-    broadcast(new \App\Events\MapDismissed($matchId, $data));
+    $engine = new ElephantIO\Engine\SocketIO\Version1X('http://mapvote.dev:3000');
+    $elephant = new \ElephantIO\Client($engine);
+    $elephant->initialize(false);
+    $elephant->emit('dismissed', [
+        'match' => $matchId,
+        'map' => $map
+    ]);
 
     return 'OK';
 });
