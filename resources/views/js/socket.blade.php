@@ -10,7 +10,7 @@
     var activeVoter = '{{ $voter }}';
     var locked = {{ $locked }};
 
-    var io = io('http://mapvote.dev:3000/');
+    var io = io('{{ env('SOCKET_URL') }}');
     window.socket = io;
     io.on('connection', function(socket) {
         var matchId = 'match.' + matchID;
