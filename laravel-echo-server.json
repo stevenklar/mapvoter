@@ -1,0 +1,19 @@
+{
+	"appKey": "cbq9ajchrd67ikci80bloukfbrul9r8p3qk6fic1aju8mc2ls0hsagf9kn23",
+	"authHost": null,
+	"authEndpoint": "/broadcasting/auth",
+	"database": "sqlite",
+	"databaseConfig": {
+		"redis": {},
+		"sqlite": {
+			"databasePath": "/database/laravel-echo-server.sqlite"
+		}
+	},
+	"devMode": false,
+	"host": "mapvote.dev",
+	"port": "3000",
+	"referrers": [],
+	"socketio": {},
+	"sslCertPath": "",
+	"sslKeyPath": ""
+}
